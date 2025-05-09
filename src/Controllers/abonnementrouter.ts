@@ -1,7 +1,7 @@
 import  express  from "express";
 import {Request, Response} from "express";
 import {sql_db_pool_promise} from "../db/mysql";
-import { ResultSetHeader } from 'mysql2';
+import {ResultSetHeader} from 'mysql2';
 import {packs} from "../models/packs";
 import {ValidatePacks} from '../../validators/packs-validators';
 import {buySubscriptionValidator} from "../../validators/subcription";
