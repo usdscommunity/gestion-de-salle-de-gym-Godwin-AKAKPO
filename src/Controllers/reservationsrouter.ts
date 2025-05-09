@@ -53,4 +53,29 @@ resrouter.get("/my", authenticationfilter, authorizeRole(['guest']), async (req:
     }
 });
 
+
+//Ajoutons une route supplémentaire pour permettre à un apropriétaire de voir les réservations de sa salle de gym
+resrouter.get("/salle/:gym_id", authenticationfilter, authorizeRole(['owner']), async (req: Request, res: Response) => {
+    const gym_id = req.params['gym_id'];
+    const owner_id = req.userId;
+
+    try {
+        // vérifions  que le propriétaire possède vraiment cette salle possède cette salle
+        const sqlRequest = "SELECT id FROM gyms WHERE id = ? AND id_owner = ?";
+        const [result] = await sql_db_pool_promise.execute(sqlRequest, [gym_id, owner_id]) as any[];
+        if (result.length === 0) {
+            res.status(403).json({ message: "Vous n'êtes pas propriétaire de cette salle." });
+            return;
+        }
+
+        const sqlRequest1 = " SELECT r.id, r.user_id, r.date, r.time_start, r.time_end, u.nom AS client_name FROM reservations r  JOIN users u ON r.user_id = u.id   WHERE r.gym_id = ?   ORDER BY r.date DESC, r.time_start";
+        const [reservations] = await sql_db_pool_promise.execute(sqlRequest1, [gym_id]) as any[];
+
+        res.status(200).json({message: "Voici une liste des reservations de votre salle de gym ", reservations :  reservations });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Erreur lors de la récupération des réservations de la salle." });
+    }
+});
+
 export const apiReservationRouter = resrouter; 
