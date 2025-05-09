@@ -36,7 +36,7 @@ export const authenticationfilter = async(req : Request, res : Response, next: N
             return res.status(401).json({ message: "Unauthorized. This token is blacklisted" });
         }
         const decoded = verifytoken(token);
-        console.log(decoded)
+       
         req.userId = decoded.userId;
         
         //Si tout est en règle elaors la requete continue 
