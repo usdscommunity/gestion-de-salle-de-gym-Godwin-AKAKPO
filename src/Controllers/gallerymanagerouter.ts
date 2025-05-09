@@ -9,7 +9,7 @@ import {authorizeRole} from "../../security/auth-filter";
 const imgRouter = express();
 
 // Ajouter des photos à une salle de gym (OWNER uniquement)
-imgRouter.post("/photos", authenticationfilter, authorizeRole(['owner']), ValidatePhotosRequest, async (req: Request, res: Response) => {
+imgRouter.post("/", authenticationfilter, authorizeRole(['owner']), ValidatePhotosRequest, async (req: Request, res: Response) => {
     const { gym_id, photos } = req.body;
     const ownerId = req.userId;
 
@@ -45,7 +45,7 @@ imgRouter.post("/photos", authenticationfilter, authorizeRole(['owner']), Valida
 });
 
 // Supprimer des photos d'une salle de gym (OWNER uniquement)
-imgRouter.delete("/photos", authenticationfilter, authorizeRole(['owner']),   ValidatePhotosRequest, async (req: Request, res: Response) => {
+imgRouter.delete("/", authenticationfilter, authorizeRole(['owner']),   ValidatePhotosRequest, async (req: Request, res: Response) => {
     const { gym_id, photos } = req.body;
     const ownerId = req.userId;
 
