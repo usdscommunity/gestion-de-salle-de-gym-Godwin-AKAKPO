@@ -12,7 +12,7 @@ import { subscription } from "../models/subcription";
 
 const abonRouter = express();
 
-//Route pour permettre à un propriétaire de créer un abonnement pour sa salle
+//Route pour permettre à un propriétaire de créer un abonnement pour sa salle en y ajoutant les photos en meme temps 
 abonRouter.post('/',  authenticationfilter, authorizeRole(['owner']), ValidatePacks, async(req : Request, res : Response) =>{
     const pack = req.body as packs;
     const Id = req.userId;
