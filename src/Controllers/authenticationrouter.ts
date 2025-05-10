@@ -6,7 +6,7 @@ import {generateToken} from "../../security/jwt-auth";
 import {ValidateRegister} from '../../validators/auth-validator';
 import {ValidateLogin} from '../../validators/auth-validator';
 import { validationResult } from 'express-validator';
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 import {insertToken} from "../models/tokens_blacklist";
 import { authenticationfilter } from "../../security/auth-filter"; 
 import {authorizeRole} from "../../security/auth-filter";
