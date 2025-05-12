@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GymManage - Système de Gestion de Salle de Gym</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #7bc4b2, #89d1c0, #6eb3a5, #7bc4b2);
+            /*background-color: aliceblue;*/
+            background-size: 400% 400%;
+            color: #1f1f1f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            background-attachment: fixed;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        .container {
+            /*background: rgba(123, 196, 178, 0.85); */
+             background-color: aliceblue;
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(110, 179, 165, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+            animation: floatAnimation 6s ease-in-out infinite;
+        }
+
+        .container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        h1 i {
+            color: #1f1f1f;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .title-text {
+            color: #1f1f1f;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1em;
+            margin-bottom: 1.5em;
+            line-height: 1.6;
+            color: rgba(31, 31, 31, 0.9);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 2em;
+            padding: 10px 20px;
+            background-color: #6eb3a5;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn i {
+            margin-right: 10px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            background-color: #89d1c0;
+        }
+
+        .social-links {
+            margin-top: 2em;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #1f1f1f;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2) rotate(10deg);
+            color: #6eb3a5;
+        }
+
+        /* Responsive Adjustments */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+                margin: 0 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                gap: 10px;
+            }
+
+            p {
+                font-size: 0.9em;
+            }
+
+            .btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .social-links a {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <i class="fas fa-dumbbell"></i>
+            <span class="title-text">GymManage</span>
+            <i class="fas fa-dumbbell"></i>
+        </h1>
+        <p>API pour la gestion efficace des salles de sport 💪🏋️‍♀️</p>
+        <a href="https://github.com/usdscommunity/gestion-de-salle-de-gym-Godwin-AKAKPO" target="_blank" class="btn">
+            <i class="fab fa-github"></i> Voir le projet sur GitHub
+        </a>
+        <div class="social-links">
+            <a href="https://wa.me/+22967109440" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/in/godwin-akakpo?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BE5QvNK%2BORNmmJVMgZkzabA%3D%3D" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/Godwinemegak" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://github.com/Godwin-AKAKPO" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</body>
+</html>

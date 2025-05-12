@@ -2,6 +2,7 @@ import express from 'express';
 import {Request, Response} from "express";
 import {apiauthrouter} from '../src/Controllers/authenticationrouter';
 import {apigymRouter} from '../src/Controllers/gymsrouter';
+import * as path from "path";
 import {apiabonRouter} from '../src/Controllers/abonnementrouter';
 import {apiboutiquerouter} from '../src/Controllers/boutiquerouter';
 import {apiReservationRouter} from '../src/Controllers/reservationsrouter'
@@ -30,8 +31,9 @@ appExpress.use('/products', apiboutiquerouter);
 appExpress.use('/photos',  apiimgRouter);
 appExpress.use('/reservations', apiReservationRouter);
 
-appExpress.get("/", async(req : Request, res : Response ) => {
-  res.send("Bienvenue sur la gestion de salle de gym !");
+// Route racine => renvoie index.html
+appExpress.get("/", (_req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 //console.log("JWT_SECRET:", process.env.JWT_SECRET); ///Faisons démarrer le serveur 
