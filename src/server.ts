@@ -1,4 +1,5 @@
 import express from 'express';
+import {Request, Response} from "express";
 import {apiauthrouter} from '../src/Controllers/authenticationrouter';
 import {apigymRouter} from '../src/Controllers/gymsrouter';
 import {apiabonRouter} from '../src/Controllers/abonnementrouter';
@@ -29,7 +30,9 @@ appExpress.use('/products', apiboutiquerouter);
 appExpress.use('/photos',  apiimgRouter);
 appExpress.use('/reservations', apiReservationRouter);
 
-
+appExpress.get("/", async(req : Request, res : Response ) => {
+  res.send("Bienvenue sur la gestion de salle de gym !");
+});
 
 //console.log("JWT_SECRET:", process.env.JWT_SECRET); ///Faisons démarrer le serveur 
 //console.log(process.env.DB_NAME); 
